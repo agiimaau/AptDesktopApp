@@ -1,0 +1,26 @@
+enuuger table ee uusgerei <3 
+CREATE TABLE users (
+    user_id SERIAL PRIMARY KEY,
+    lastname VARCHAR(50),
+    firstname VARCHAR(50),
+    apartment_number VARCHAR(10),
+    door_number VARCHAR(10),
+    username VARCHAR(50) UNIQUE,
+    password VARCHAR(50),
+    role VARCHAR(10)
+);
+
+-- Create the cars table
+CREATE TABLE cars (
+    car_id SERIAL PRIMARY KEY,
+    user_id INT REFERENCES users(user_id) ON DELETE CASCADE,
+    car_model VARCHAR(50),
+    car_plate VARCHAR(20)
+);
+CREATE TABLE complaints (
+    complaint_id SERIAL PRIMARY KEY,
+    user_id INT NOT NULL,
+    description TEXT NOT NULL,
+    status VARCHAR(50) DEFAULT 'Pending',
+    FOREIGN KEY (user_id) REFERENCES users(user_id)
+);
